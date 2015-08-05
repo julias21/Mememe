@@ -6,4 +6,12 @@
 //  Copyright (c) 2015 Julia Stefani. All rights reserved.
 //
 
-import Foundation
+
+import UIKit
+
+class MemeCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet var PhotoCell: UIImageView!
+  
+    
+}
