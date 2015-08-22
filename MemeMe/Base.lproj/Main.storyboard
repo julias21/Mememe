@@ -56,7 +56,7 @@
                     <navigationItem key="navigationItem" id="HkM-XA-8DC">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="aoR-Jc-lIx">
                             <connections>
-                                <action selector="sharememe:" destination="vXZ-lx-hvc" id="tSN-Hp-erT"/>
+                                <action selector="sharememe:" destination="vXZ-lx-hvc" id="lW4-Ic-8Xu"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="4xf-Sq-JFC">
@@ -98,7 +98,6 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Rbj-H4-T4k">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="KNS-39-GPs"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="qRq-FW-h6W"/>
                     </navigationItem>
                     <connections>
@@ -203,7 +202,6 @@
                                 </view>
                                 <connections>
                                     <outlet property="PhotoCell" destination="m3d-sS-FDa" id="k0C-s0-csD"/>
-                                    <segue destination="jKI-IO-Vdb" kind="show" identifier="collectionviewToDisplay" id="oiN-1G-FGH"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -215,11 +213,12 @@
                     <navigationItem key="navigationItem" id="2f8-ft-RDl"/>
                     <connections>
                         <outlet property="collectionView" destination="N4e-gk-Amo" id="Ypz-TZ-Ha8"/>
+                        <segue destination="jKI-IO-Vdb" kind="show" identifier="collectionviewToDisplay" id="uTO-9f-3HK"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qKM-qr-prG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1752" y="1293"/>
+            <point key="canvasLocation" x="1828" y="1284"/>
         </scene>
         <!--Meme Table View Controller-->
         <scene sceneID="D8t-Qr-tXZ">
@@ -236,8 +235,8 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1bb-xb-3aT" id="NVZ-mg-j3Z">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dsh-rK-Rcu">
-                                            <rect key="frame" x="0.0" y="0.0" width="199" height="199"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dsh-rK-Rcu">
+                                            <rect key="frame" x="-6" y="0.0" width="199" height="199"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" none="YES" image="YES" summaryElement="YES"/>
                                             </accessibility>
@@ -254,7 +253,6 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="MemeImageView" destination="Dsh-rK-Rcu" id="Pb0-Xa-F6L"/>
-                                    <segue destination="jKI-IO-Vdb" kind="show" identifier="tableviewToDisplay" id="mUJ-JM-nLE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -265,6 +263,9 @@
                     <navigationItem key="navigationItem" id="3FH-TN-gLf">
                         <barButtonItem key="leftBarButtonItem" title="Edit" id="i3B-Sl-afM"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="jKI-IO-Vdb" kind="show" identifier="tableviewToDisplay" id="dFn-MQ-dHZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aw7-GI-qbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -312,6 +313,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mUJ-JM-nLE"/>
+        <segue reference="dFn-MQ-dHZ"/>
     </inferredMetricsTieBreakers>
 </document>

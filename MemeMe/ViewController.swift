@@ -52,6 +52,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
+    
    //action based functions
 
     @IBAction func PickphotofromAlbum(sender: AnyObject) {
@@ -69,20 +70,44 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     
+//    @IBAction func sharememe(sender: AnyObject) {
+   // let memedImage = generateMemedImage()
+   // let ActivityViewController = UIActivityViewController(activityItems:[memedImage], applicationActivities: nil)
+    
+    
+   // ActivityViewController.completionWithItemsHandler = { (activity, success, items, error) in
+  //  if success == false {
+  //  let savedMemesCollection = self.storyboard!.instantiateViewControllerWithIdentifier("InitialTabController")! as! UITabBarController
+  //  self.navigationController!.presentViewController(savedMemesCollection, animated: true, completion: nil)
+  //  ActivityViewController.dismissViewControllerAnimated(true, completion: nil)
+  //  }
+    
+  //  if success == true {
+  //  self.save()
+  //  let savedMemesCollection = self.storyboard!.instantiateViewControllerWithIdentifier("InitialTabController")! as! UITabBarController
+  //  self.navigationController!.presentViewController(savedMemesCollection, animated: true, completion: nil)
+  //  ActivityViewController.dismissViewControllerAnimated(true, completion: nil)
+  //  }
+  //  self.presentViewController(ActivityViewController, animated: true, completion: nil)
+    
+  //  }
+//}
+
+
     @IBAction func sharememe(sender: AnyObject) {
-        let memedImage = generateMemedImage()
-        let ActivityViewController = UIActivityViewController(activityItems:[memedImage], applicationActivities: nil)
-        ActivityViewController.completionWithItemsHandler = { (_, _, _, _) in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
-      
-        self.presentViewController(ActivityViewController, animated: true, completion: nil)
-        save()
-    }
-    
-    
-    
-    
+ 
+let memedImage = generateMemedImage()
+let ActivityViewController = UIActivityViewController(activityItems:[memedImage], applicationActivities: nil)
+ActivityViewController.completionWithItemsHandler = { (_, _, _, _) in
+    self.dismissViewControllerAnimated(true, completion: nil)
+}
+
+self.presentViewController(ActivityViewController, animated: true, completion: nil)
+save()
+}
+
+
+
     @IBAction func cancel(sender: AnyObject){
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -98,6 +123,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     //Show/hide keyboard
     
+    // keyboard dismiss when return is pressed (fixing comment from 1st submission)
+   func textFieldShouldReturn(textField: UITextField) -> Bool {
+       Top.resignFirstResponder()
+       Bottom.resignFirstResponder()
+       return true
+   }
+    
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:"    , name: UIKeyboardWillShowNotification, object: nil)
          NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
@@ -111,13 +143,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func keyboardWillShow(notification: NSNotification) {
+        if Bottom.isFirstResponder() {
         self.view.frame.origin.y -= getKeyboardHeight(notification)
        
+       }
     }
     
     func keyboardWillHide(notification: NSNotification) {
+        if Bottom.isFirstResponder(){
         self.view.frame.origin.y += getKeyboardHeight(notification)
+        }
     }
+    
+  
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
         let userInfo = notification.userInfo
@@ -133,9 +171,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Add it to the memes array in the Application Delegate
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
-        appDelegate.memes.append(meme)
-    }
-    
+            appDelegate.memes.append(meme)
+        }
+
+
     //generating the meme
     
     func generateMemedImage() -> UIImage
