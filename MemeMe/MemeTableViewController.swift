@@ -23,15 +23,7 @@ class MemeTableViewController : UITableViewController, UITableViewDataSource {
         self.tableView.reloadData()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "tableviewToDisplay") {
-            let destVC:DisplayMemeViewController = segue.destinationViewController as! DisplayMemeViewController
-
-            var indexPath = self.tableView.indexPathForSelectedRow()!
-            let meme:Meme = self.memes[indexPath.row] as Meme
-            destVC.meme = meme
-        }
-    }
+ 
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.memes.count
@@ -46,6 +38,21 @@ class MemeTableViewController : UITableViewController, UITableViewDataSource {
         
     }
     
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "tableviewToDisplay") {
+            let destVC:DisplayMemeViewController = segue.destinationViewController as! DisplayMemeViewController
+            
+            var indexPath = self.tableView.indexPathForSelectedRow()!
+            let meme:Meme = self.memes[indexPath.row] as Meme
+            destVC.meme = meme
+        }
+    }
     
     
     

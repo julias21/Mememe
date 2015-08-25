@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var Photos: UIBarButtonItem!
     @IBOutlet weak var Camera: UIBarButtonItem!
@@ -27,13 +27,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     ]
     
     override func viewDidLoad() {
+       
+       
         super.viewDidLoad()
+        Top.delegate =  self
+        Bottom.delegate = self
+        Bottom.textAlignment = .Center
         Top.defaultTextAttributes = memeTextAttributes
         Bottom.defaultTextAttributes = memeTextAttributes
         Top.text = "TOP"
         Top.textAlignment = .Center
         Bottom.text = "BOTTOM"
-        Bottom.textAlignment = .Center
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,28 +75,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     
-//    @IBAction func sharememe(sender: AnyObject) {
-   // let memedImage = generateMemedImage()
-   // let ActivityViewController = UIActivityViewController(activityItems:[memedImage], applicationActivities: nil)
-    
-    
-   // ActivityViewController.completionWithItemsHandler = { (activity, success, items, error) in
-  //  if success == false {
-  //  let savedMemesCollection = self.storyboard!.instantiateViewControllerWithIdentifier("InitialTabController")! as! UITabBarController
-  //  self.navigationController!.presentViewController(savedMemesCollection, animated: true, completion: nil)
-  //  ActivityViewController.dismissViewControllerAnimated(true, completion: nil)
-  //  }
-    
-  //  if success == true {
-  //  self.save()
-  //  let savedMemesCollection = self.storyboard!.instantiateViewControllerWithIdentifier("InitialTabController")! as! UITabBarController
-  //  self.navigationController!.presentViewController(savedMemesCollection, animated: true, completion: nil)
-  //  ActivityViewController.dismissViewControllerAnimated(true, completion: nil)
-  //  }
-  //  self.presentViewController(ActivityViewController, animated: true, completion: nil)
-    
-  //  }
-//}
 
 
     @IBAction func sharememe(sender: AnyObject) {

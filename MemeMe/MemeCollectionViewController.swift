@@ -37,24 +37,17 @@ override func viewWillAppear(animated:Bool) {
     }
     
     
- //  override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath:NSIndexPath)
-   // {
-        
-     //   let memeDetailVC = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController")! as! DisplayMemeViewController
-      //  memeDetailVC.meme = self.memes[indexPath.row]
-       // self.navigationController!.pushViewController(memeDetailVC, animated: true)
-   // }
-
-    
-//}
+    override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        collectionView.deselectItemAtIndexPath(indexPath, animated: false)
+    }
 
   
-override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
        if (segue.identifier == "collectionviewToDisplay") {
      let destVC:DisplayMemeViewController = segue.destinationViewController as! DisplayMemeViewController
        var indexPath = NSIndexPath()
         destVC.meme = self.memes[indexPath.row]
         self.navigationController!.pushViewController(destVC, animated: true)
-}
-}
+        }
+    }
 }
