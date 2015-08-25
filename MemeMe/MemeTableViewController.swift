@@ -40,15 +40,15 @@ class MemeTableViewController : UITableViewController, UITableViewDataSource {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+       self.performSegueWithIdentifier("tableviewToDisplay", sender: tableView)
     }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "tableviewToDisplay") {
-            let destVC:DisplayMemeViewController = segue.destinationViewController as! DisplayMemeViewController
             
             var indexPath = self.tableView.indexPathForSelectedRow()!
+            let destVC:DisplayMemeViewController = segue.destinationViewController as! DisplayMemeViewController
             let meme:Meme = self.memes[indexPath.row] as Meme
             destVC.meme = meme
         }
